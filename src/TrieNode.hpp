@@ -15,7 +15,7 @@ private:
 	size_t id;
 	K key;
 	bool isTerminal;
-	vector<TrieNode> children;
+	map<K,TrieNode> childrenMap;
 public:
 	TrieNode() : isTerminal(false), id(0) {}
 	TrieNode(K key) :  isTerminal(false), id(0), key(key) {}
@@ -25,8 +25,8 @@ public:
 	size_t getId(){return id;}
 	void setId(const size_t id){this->id = id;}
 	void setTerminated(){isTerminal=true;}
-	void addChild(TrieNode n){this->children.push_back(n);};
-	vector<TrieNode> getChildren(){return children;};
+	void addChild(K key, TrieNode n){this->childrenMap.insert ( pair<K,TrieNode>(key , n) );};
+	//vector<TrieNode> getChildren(){return children;};
 };
 
 #endif /* TRIENODE_HPP_ */
