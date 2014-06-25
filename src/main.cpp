@@ -7,11 +7,12 @@
 
 #include <iostream>
 #include <algorithm>
-#include "BinaryTree.hpp"
+#include "Trie.hpp"
 
 using namespace std;
 
 int main(int argc, const char* argv[]){
+  /*
 	int arr[8] = {2,4,92,52,13,38,9,21};
 	sort(arr,arr+8);
 	cout <<"building tree" << endl;
@@ -21,6 +22,12 @@ int main(int argc, const char* argv[]){
 	node<int> *d = btree->search(13);
 	cout << d->value <<endl;
 	delete btree;
+	*/
+  Trie<int>* trie = new Trie();
+  trie->insert("I",100);
+  trie->insert("am", 90);
+  trie->insert("a",900);
+  trie->insert("beautiful",50);
 }
 
 
