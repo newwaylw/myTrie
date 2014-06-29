@@ -7,11 +7,4 @@
 
 #include "Trie.hpp"
 
-Trie::Trie() {
-	// TODO Auto-generated destructor stub
-}
-
-Trie::~Trie() {
-	// TODO Auto-generated destructor stub
-}
 

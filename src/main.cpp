@@ -23,11 +23,14 @@ int main(int argc, const char* argv[]){
 	cout << d->value <<endl;
 	delete btree;
 	*/
-  Trie<int>* trie = new Trie();
+  Trie<int>* trie = new Trie<int>();
   trie->insert("I",100);
   trie->insert("am", 90);
   trie->insert("a",900);
   trie->insert("beautiful",50);
+
+  int freq = trie->get("am");
+  cout << "freq:"<<freq << endl;
 }
 
 

@@ -16,22 +16,22 @@ using namespace std;
 template<class V>
 class Trie {
 private:
-  TrieNode<char> root;
+  TrieNode<char>* root;
   vector<V> valVector;
 
 public:
-  Trie();
-  virtual
-  ~Trie();
+  Trie(){root = new TrieNode<char>();}
+  virtual ~Trie(){delete root;}
 
   void insert(const string& key, V value) {
-    char* s = key.c_str();
+    const char* s = key.c_str();
     size_t id = 0;
     TrieNode<char>* node = root;
+    map<char, TrieNode<char> > *childMap;
     while (*s != '\0') {
-      map<char, TrieNode<char>> *childMap = node->getChildren();
-      if (childMap->find(s)) {
-          node = childMap[*s];
+      childMap = node->getChildren();
+      if (childMap->find(*s) != childMap->end()) {
+          node = &(childMap->at(*s));
           s++;
           break;
       }
@@ -48,23 +48,24 @@ public:
   }
 
   V get(const string& key) {
-    char* s = key.c_str();
-    size_t id = 0;
+    const char* s = key.c_str();
+    //size_t id = 0;
     TrieNode<char>* node = root;
+    map<char, TrieNode<char> > *childMap;
     while (*s != '\0') {
-      map<char, TrieNode<char>> *childMap = node->getChildren();
-      if (childMap->find(s)) {
-        node = childMap[*s];
+      childMap = node->getChildren();
+      if (childMap->find(*s)!= childMap->end()) {
+    	node = &(childMap->at(*s));
         s++;
-        break;
       }
       //not found
       else{
-        return null;
+        return 0;
       }
-      //reach end
-      return valVector[node->getId()];
     }
+    if (node->isTerminated())//reach end
+      return valVector[node->getId()];
+    else return 0;
   }
 };
 
