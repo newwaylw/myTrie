@@ -24,8 +24,8 @@ int main(int argc, const char* argv[]){
 	delete btree;
 	*/
   Trie<int>* trie = new Trie<int>();
-  trie->insert("I",100);
   trie->insert("am", 90);
+  trie->insert("I",100);
   trie->insert("a",900);
   trie->insert("beautiful",50);
 

@@ -10,6 +10,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "TrieNode.hpp"
 using namespace std;
 
@@ -27,17 +28,19 @@ public:
     const char* s = key.c_str();
     size_t id = 0;
     TrieNode<char>* node = root;
-    map<char, TrieNode<char> > *childMap;
-    while (*s != '\0') {
+    map<char, TrieNode<char>* > *childMap;
+    while (s) {
       childMap = node->getChildren();
+      cout<<*s<<endl;
       if (childMap->find(*s) != childMap->end()) {
-          node = &(childMap->at(*s));
+    	  cout<<"node found!" <<endl;
+          node = childMap->at(*s);
           s++;
           break;
       }
       //not found
       else {
-        TrieNode<char> tn(*s);
+        TrieNode<char> *tn = new TrieNode<char>(*s);
         node->addChild(tn);
       }
 
@@ -51,11 +54,11 @@ public:
     const char* s = key.c_str();
     //size_t id = 0;
     TrieNode<char>* node = root;
-    map<char, TrieNode<char> > *childMap;
+    map<char, TrieNode<char>* > *childMap;
     while (*s != '\0') {
       childMap = node->getChildren();
       if (childMap->find(*s)!= childMap->end()) {
-    	node = &(childMap->at(*s));
+    	node = childMap->at(*s);
         s++;
       }
       //not found
